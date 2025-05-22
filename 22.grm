@@ -1,10 +1,6 @@
 "Start Symbol" = <stmt_list>
 "Case Sensitive"='False'
                 
-!----Character Sets-----
-
-{String Chars} = {Printable} + {HT} - ["\]
-
 !---------------terminals-----------
 Id      = [_] | {letter} {Alphanumeric}*
 Digit  = {Digit}+
@@ -41,14 +37,14 @@ Digit  = {Digit}+
 !----------if--------
 
 <if_stmt> ::= if <cond>  '(' <stmt_list> ')'
-           | if <cond> '==>' '(' <stmt_list> '}' else '==>'  '(' <stmt_list> ')'
+           | if <cond>  '(' <stmt_list> '}' else  '(' <stmt_list> ')'
 
 <cond> ::= <expr> <op> <expr>
  
 <op> ::= '<' | '>' | '= ' | '!='
 
 !-----for-----
-<for_stmt> ::= For '('<assign> ',' <cond> ',' <step> ')' '==>' '('<stmt_list> ')'
+<for_stmt> ::= For '('<assign> ',' <cond> ',' <step> ')'  '{' <stmt_list> '}'
 
 
 
@@ -58,5 +54,5 @@ Digit  = {Digit}+
          | <id> '++'
          | <assign>
 
-
+ 
 
