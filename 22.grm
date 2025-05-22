@@ -1,9 +1,13 @@
 "Start Symbol" = <stmt_list>
+"Case Sensitive"='False'
+                
+!----Character Sets-----
+
+{String Chars} = {Printable} + {HT} - ["\]
 
 !---------------terminals-----------
 Id      = [_] | {letter} {Alphanumeric}*
-Digit  = ('+' | '-')? {digit}+ ('.' {digit}+)? (('e') ('+' | '-')? {digit}+ ('.' {digit}+)? )?
-
+Digit  = {Digit}+
 
 !------rules--------------
 <stmt_list> ::= <concept>
@@ -12,7 +16,7 @@ Digit  = ('+' | '-')? {digit}+ ('.' {digit}+)? (('e') ('+' | '-')? {digit}+ ('.'
 <concept> ::= <assign>
             | <if_stmt>
             |<for_stmt>
-
+ 
 <assign> ::= <id> '=' <expr>
 
 <id> ::= Id
@@ -33,7 +37,7 @@ Digit  = ('+' | '-')? {digit}+ ('.' {digit}+)? (('e') ('+' | '-')? {digit}+ ('.'
 <exp> ::= '(' <expr> ')'
        | <id>
        | <digit>
-
+ 
 !----------if--------
 
 <if_stmt> ::= if <cond>  '(' <stmt_list> ')'
@@ -44,14 +48,15 @@ Digit  = ('+' | '-')? {digit}+ ('.' {digit}+)? (('e') ('+' | '-')? {digit}+ ('.'
 <op> ::= '<' | '>' | '= ' | '!='
 
 !-----for-----
-<for_stmt> ::= For '(' <data> <assign> ',' <cond> ',' <step> ')' '==>' '('<stmt_list> ')'
+<for_stmt> ::= For '('<assign> ',' <cond> ',' <step> ')' '==>' '('<stmt_list> ')'
 
-<data> ::= int | float | string
+
 
 <step> ::= '--' <id>
          | <id> '--'
          | '++' <id>
          | <id> '++'
          | <assign>
+
 
 
